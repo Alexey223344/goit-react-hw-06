@@ -1,23 +1,26 @@
-import { nanoid } from "nanoid";
-import { addContact } from "../../redux/contactsSlice";
-import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import s from './ContactForm.module.css';
+import { useDispatch } from 'react-redux';
+
+import { nanoid } from 'nanoid';
+import { addContact } from '../../redux/contactsSlice';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const orderSchema = Yup.object({
     name: Yup.string()
-      .min(3, "Minimum 3 characters")
-      .max(50, "Maximum  50 characters")
-      .required("Must be filled"),
+      .min(3, 'Minimum 3 characters')
+      .max(50, 'Maximum 50 characters')
+      .required('Must be filled'),
     number: Yup.string()
-      .matches(/^\+?[1-9]\d{1,14}$/, "Invalid phone number")
-      .min(3, "Minimum 3 digits")
-      .max(50, "Maximum 50 digits")
-      .required("Must be filled"),
+      .matches(/^\+?[1-9]\d{1,14}$/, 'Invalid phone number')
+      .min(3, 'Minimum 3 digits')
+      .max(50, 'Maximum 50 digits')
+      .required('Must be filled'),
   });
+
   const handleForm = (values, options) => {
     dispatch(
       addContact({
@@ -28,28 +31,32 @@ const ContactForm = () => {
     );
     options.resetForm();
   };
+
   return (
     <div>
       <Formik
-        initialValues={{ name: "", number: "" }}
+        initialValues={{ name: '', number: '' }}
         onSubmit={handleForm}
         validationSchema={orderSchema}
       >
-        <Form>
+        <Form className={s.contactForm}>
           <label>
             Name
-            <Field name="name" />
-            <ErrorMessage name="name" component="p" />
+            <Field className={s.formInput} name='name' />
+            <ErrorMessage className={s.inputErr} name='name' component='p' />
           </label>
           <label>
             Number
-            <Field name="number" />
-            <ErrorMessage name="number" component="p" />
+            <Field className={s.formInput} name='number' />
+            <ErrorMessage className={s.inputErr} name='number' component='p' />
           </label>
-          <button type="submit">Add Contact</button>
+          <button className={s.formBtn} type='submit'>
+            Add contact
+          </button>
         </Form>
       </Formik>
     </div>
   );
 };
+
 export default ContactForm;

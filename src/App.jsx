@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ContactForm from "./components/ContactForm/ContactForm";
-import SearchBox from "./components/SearchBox/SearchBox";
-import ContactList from "./components/ContactList/ContactList";
+import { useEffect, useState } from 'react';
+import ContactForm from './components/ContactForm/ContactForm';
+import ContactList from './components/ContactList/ContactList';
+import SearchBox from './components/SearchBox/SearchBox';
+import { useSelector } from 'react-redux';
 
-const App = () => {
-  const [serchUser, setSerchUser] = useState("");
-  const contactsData = useSelector((state) => state.contacts.item);
+function App() {
+  const [serchUser, setSerchUser] = useState('');
+
+  const contactsData = useSelector(state => state.contacts.items);
+
   useEffect(() => {
-    localStorage.setItem("contactsUser", JSON.stringify(contactsData));
+    window.localStorage.setItem('contactUser', JSON.stringify(contactsData));
   }, [contactsData]);
+
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <>
+      <h1 className='pageTitle'>Phonebook</h1>
       <ContactForm />
       <SearchBox serchUser={serchUser} setSerchUser={setSerchUser} />
       <ContactList />
-    </div>
+    </>
   );
-};
+}
+
 export default App;
