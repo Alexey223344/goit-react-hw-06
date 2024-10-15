@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { addContact } from "../../redux/contactsSlise";
+import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -46,7 +46,7 @@ const ContactForm = () => {
             <Field name="number" />
             <ErrorMessage name="number" component="p" />
           </label>
-          <button type='submit'>Add Contact</button>
+          <button type="submit">Add Contact</button>
         </Form>
       </Formik>
     </div>
