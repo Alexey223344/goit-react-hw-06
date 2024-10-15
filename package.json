@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-05",
+  "name": "goit-react-hw-06",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -30,6 +30,7 @@
     "react-router-dom": "^6.26.2",
     "redux-persist": "^6.0.0",
     "unsplash-js": "^7.0.19",
+    "update": "^0.7.4",
     "yup": "^1.4.0"
   },
   "devDependencies": {
